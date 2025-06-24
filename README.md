@@ -1,169 +1,71 @@
-# Sample Search Filter Assistant
+# RAG Chatbot with Mistral AI
 
-A Retrieval-Augmented Generation (RAG) system that helps users understand and effectively use sample search filters through natural language queries.
+A Retrieval-Augmented Generation (RAG) chatbot built with Flask and Mistral AI.
 
-## Overview
+**Created by [Halim Madi](https://www.halimmadi.com)**
 
-This project implements a RAG-based chatbot designed to answer questions about sample search filtering capabilities. Users can ask questions in plain English about how to configure, apply, and troubleshoot filters, and receive accurate, contextual responses based on the sample search documentation and best practices.
+This is a sample project designed for students, workshops, and educational purposes. Feel free to use, modify, and distribute this code as you wish for learning and development.
 
-## Features
+## About the Creator
 
-- **Natural Language Queries**: Ask questions about filters in conversational language
-- **Contextual Responses**: Get accurate answers based on Deep Analytics documentation
-- **Filter Examples**: Receive practical examples and code snippets
-- **Interactive Q&A**: Engage in follow-up questions for deeper understanding
-- **Search Functionality**: Find specific filter types and use cases quickly
+- **Website**: [www.halimmadi.com](https://www.halimmadi.com)
+- **Instagram**: [@yalla_halim](https://www.instagram.com/yalla_halim/)
 
-## Use Cases
+## Setup
 
-- Learning how to create complex filter expressions
-- Understanding filter syntax and operators
-- Troubleshooting filter performance issues
-- Discovering advanced filtering techniques
-- Getting examples for specific data scenarios
+1. Clone the repository
+2. Create a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Create a `.env` file with your Mistral API key:
+   ```
+   MISTRAL_API_KEY=your_api_key_here
+   ```
+5. Add your text file as `essay.txt` in the project root
 
-## Getting Started
+## Local Development
 
-### Prerequisites
-
-```bash
-python >= 3.8
-pip install -r requirements.txt
-```
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/sample-search-rag.git
-cd sample-search-rag
-```
-
-2. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-3. Set up environment variables:
-```bash
-cp .env.example .env
-# Edit .env with your configuration
-```
-
-4. Initialize the vector database:
-```bash
-python setup_database.py
-```
-
-### Usage
-
-Start the application:
+Run the Flask application:
 ```bash
 python app.py
 ```
 
-Then interact with the system by asking questions like:
-- "How do I filter search results by date range?"
-- "What's the syntax for combining multiple search filter conditions?"
-- "How can I filter null values in sample searches?"
-- "Show me examples of regex search filters"
+The application will be available at `http://localhost:5001`
 
-## Example Queries
+## Deployment to Vercel
 
-**Basic Filtering:**
-```
-Q: How do I create a simple text search filter?
-A: To create a text filter in sample search, use the 'contains' operator...
-```
+1. Push your code to GitHub
+2. Connect your GitHub repository to Vercel
+3. Add your environment variables in the Vercel dashboard:
+   - `MISTRAL_API_KEY`: Your Mistral API key
+4. Deploy!
 
-**Advanced Filtering:**
-```
-Q: How do I combine date and category search filters?
-A: You can combine search filters using logical operators (AND, OR)...
-```
+## Environment Variables
 
-**Performance Optimization:**
-```
-Q: My search filters are running slowly, how can I optimize them?
-A: Here are several strategies to improve search filter performance...
-```
+- `MISTRAL_API_KEY`: Your Mistral AI API key (required)
 
-## Architecture
+## Project Structure
 
-```
-┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   User Query    │───▶│   RAG System     │───▶│   Response      │
-└─────────────────┘    └──────────────────┘    └─────────────────┘
-                              │
-                              ▼
-                       ┌──────────────────┐
-                       │  Vector Database │
-                       │  (Documentation) │
-                       └──────────────────┘
-```
+- `app.py`: Main Flask application
+- `templates/`: HTML templates
+- `static/`: Static files (CSS, JS)
+- `essay.txt`: Source text for the RAG system
+- `requirements.txt`: Python dependencies
+- `vercel.json`: Vercel deployment configuration
 
-The system consists of:
-- **Query Processing**: Natural language understanding and intent recognition
-- **Retrieval System**: Vector-based search through sample search filter documentation
-- **Generation Component**: Context-aware response generation
-- **Knowledge Base**: Embedded sample search filter documentation and examples
+## Usage and Licensing
 
-## Configuration
+This project is provided as a learning resource for students and workshop participants. You are free to:
 
-Key configuration options in `.env`:
+- Use this code for educational purposes
+- Modify and adapt it for your own projects
+- Share it with others for learning
+- Use it in workshops and tutorials
 
-```env
-# Vector Database
-VECTOR_DB_PATH=./data/vectordb
-EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
-
-# LLM Configuration
-LLM_MODEL=gpt-3.5-turbo
-MAX_TOKENS=500
-TEMPERATURE=0.1
-
-# Retrieval Settings
-TOP_K_RESULTS=5
-SIMILARITY_THRESHOLD=0.7
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Adding New Documentation
-
-To add new filter documentation:
-
-1. Place new documents in `./data/docs/`
-2. Run the ingestion script: `python ingest_docs.py`
-3. Test the new knowledge with sample queries
-
-## Roadmap
-
-- [ ] Support for visual filter builder integration
-- [ ] Multi-language query support
-- [ ] Advanced analytics on common questions
-- [ ] Integration with sample search API for live examples
-- [ ] Mobile-responsive web interface
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Support
-
-For questions and support:
-- Create an issue in this repository
-- Check the [documentation](./docs/)
-- Contact the development team
-
-## Acknowledgments
-
-- Sample search team for comprehensive documentation
-- Open source RAG frameworks and libraries
-- Community contributors and testers
+Feel free to reach out to [Halim Madi](https://www.halimmadi.com) with any questions or feedback! 
