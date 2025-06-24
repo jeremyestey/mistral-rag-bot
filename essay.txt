@@ -1,91 +1,151 @@
-Retrieval-Augmented Generation: A Comprehensive Analysis of Modern AI Systems
 
-Introduction
+Deep Analytics Query Filters
+As long as Deep Analytics is enabled, Deep Analytics query filters can be used across many Komprise applications:
 
-Retrieval-Augmented Generation (RAG) represents a paradigm shift in artificial intelligence, combining the power of large language models with external knowledge retrieval to create more accurate, factual, and contextually relevant responses. This hybrid approach addresses one of the fundamental limitations of traditional language models: their static knowledge cutoff and inability to access real-time or domain-specific information. RAG systems have emerged as a critical solution for applications requiring up-to-date information, factual accuracy, and domain expertise.
+Deep Analytics: A Deep Analytics Query is a collection of filter settings. Query filters can be combined to create queries to search analyze data. 
 
-The fundamental architecture of RAG consists of two primary components: a retrieval system that searches through external knowledge sources and a generation system that produces responses based on both the retrieved information and the model's pre-trained knowledge. This dual approach enables RAG systems to provide more reliable, verifiable, and contextually appropriate responses compared to standalone language models.
+Reports (v5.0+): Query filters can be used to narrow the datasets used for reports such as the Orphaned Data Report and the Potential Duplicates Report, as these reports leverage the Global File Index. For more information, see Understanding Komprise Reports.
 
-Historical Context and Development
+Plan: Deep Analytics Actions allow you to use Deep Analytics queries in Plan operations to enable tiering, copying, or confining of very specific data sets. For more information, see Komprise Deep Analytics Actions.
 
-The concept of combining retrieval with generation in natural language processing has evolved significantly over the past decade. Early approaches focused on simple document retrieval followed by template-based response generation. However, the advent of transformer-based language models and advances in information retrieval techniques have enabled more sophisticated integration between these components.
+Workflows (v5.7+ with Early Access Program): Komprise Smart Data Workflows allow you to define and execute automated processes such as computer vision capabilities, keyword and regex scanning, and PII detection. For more information, see Understanding Smart Data Workflows.
 
-The term "Retrieval-Augmented Generation" was popularized by Lewis et al. in their 2020 paper, which introduced a framework for combining dense retrieval with sequence-to-sequence generation. This work demonstrated that RAG systems could outperform traditional language models on knowledge-intensive tasks while maintaining fluency and coherence in generated text.
+Deep Analytics Query Filters
 
-Since then, RAG has become increasingly prevalent in commercial applications, with major technology companies implementing RAG-based systems for customer service, content generation, and information retrieval. The approach has proven particularly valuable in domains where accuracy and timeliness are critical, such as healthcare, finance, and legal services.
+All text-based queries in Komprise are case-insensitive. 
 
-Architecture and Components
+Data Store: To filter files based on sites, file servers, shares, and directories (v4.10+):
 
-RAG systems typically employ a three-stage pipeline: indexing, retrieval, and generation. The indexing stage involves processing and storing external knowledge sources in a format optimized for efficient retrieval. This often includes creating dense vector representations of documents using encoder models, which enable semantic similarity searches.
+Expand to view the listed sites (if multisite), file servers, and shares and select the required combination.
 
-The retrieval stage identifies the most relevant documents or passages from the knowledge base given a user query. This can be accomplished through various methods, including sparse retrieval (e.g., BM25), dense retrieval using neural encoders, or hybrid approaches that combine multiple retrieval strategies. The retrieved documents are then ranked and filtered to select the most relevant information for the generation stage.
+(Optional) From the Select Protocol drop-down, select the required protocol to analyze data from a particular type of share. You can select, NFS, SMB, or DUAL protocol.
 
-The generation stage combines the retrieved information with the user's query to produce a coherent and accurate response. This typically involves a large language model that has been fine-tuned to incorporate external knowledge effectively. The model must learn to balance information from the retrieved documents with its pre-trained knowledge, ensuring that the final response is both factual and contextually appropriate.
+(Optional) Enter a keyword in the Enter Keyword search bar to find shares based on a keyword.
 
-Key Advantages and Benefits
+(Optional) Toggle Include Moved data in results to include data already tiered by Komprise within the search results.
 
-RAG systems offer several significant advantages over traditional language models. First and foremost, they address the knowledge cutoff problem by enabling access to current information. This is particularly important for applications requiring up-to-date data, such as news analysis, financial reporting, or technical documentation.
+(Optional) From the selected view, click the arrow icon to the right of a share to open the Directory Explorer. From this drilldown view you can select directories. You can continue to drill down as far as needed to select or un-select the required directories. 
 
-Second, RAG systems improve factual accuracy by grounding responses in verifiable sources. This reduces the likelihood of hallucination, a common problem with large language models where they generate plausible but incorrect information. By retrieving relevant documents, RAG systems can provide citations and evidence for their responses, increasing transparency and trustworthiness.
+(Optional) Click the Overview button at any point to view all of the directories that have been selected so far.
 
-Third, RAG enables domain-specific customization without requiring extensive retraining. Organizations can simply update their knowledge base with relevant documents, allowing the system to provide specialized information without modifying the underlying language model. This makes RAG particularly valuable for enterprise applications where domain expertise is critical.
+(Optional) Click the Copy icon to the left of the breadcrumbs to copy the current breadcrumb path. 
 
-Fourth, RAG systems can handle long-form content more effectively than traditional language models, which often have context length limitations. By retrieving relevant passages, RAG can process and synthesize information from documents that exceed the model's maximum input length.
+Best practices for the Directory Explorer within the Data Store filter: 
 
-Applications and Use Cases
+This filter is specific to the selected directory(s) within their selected share(s). Unlike the Directory Path filter, it is NOT a text match across shares.
 
-RAG systems have found widespread application across numerous domains. In customer service, RAG-powered chatbots can access product documentation, FAQs, and knowledge bases to provide accurate and helpful responses to customer inquiries. This reduces the need for human intervention while improving customer satisfaction through more relevant and accurate information.
+In cases where either filter is feasible, the Data Store filter is recommended over the Directory Path filter due to better performance and usability 
 
-In healthcare, RAG systems can assist medical professionals by retrieving relevant research papers, clinical guidelines, and patient records. This enables more informed decision-making while ensuring that recommendations are based on current medical knowledge and best practices.
+If a directory checkbox is fully selected, query results will include its immediate contents as well as the contents of its child directories 
 
-In legal services, RAG can help lawyers and legal professionals by retrieving relevant case law, statutes, and legal precedents. This accelerates legal research and ensures that legal advice is grounded in current and applicable legal frameworks.
+If a directory checkbox is partially selected, i.e. some of its children are selected, results will only return the contents of the selected child directories, and NOT the immediate contents of the parent directory
 
-In education, RAG systems can provide personalized tutoring by retrieving relevant educational materials and adapting explanations to individual student needs. This enables more effective learning experiences while ensuring that information is accurate and up-to-date.
+You can click the 'Overview' button to see the full list of sites, file servers, shares, and directories that you have selected.  
 
-In content creation, RAG can assist writers and journalists by retrieving relevant background information, statistics, and source materials. This improves the quality and accuracy of generated content while reducing research time.
+Data stores selected with the Data Store filter are supported for use in Plan queries starting in Komprise version 5.5. 
 
-Technical Challenges and Limitations
+Directory Path: To filter files based on directory path text match:  
 
-Despite their advantages, RAG systems face several technical challenges that must be addressed for optimal performance. One of the primary challenges is retrieval quality, which directly impacts the accuracy of generated responses. Poor retrieval can lead to irrelevant information being incorporated into responses, reducing overall quality.
+Starts With: Directory paths that start with the specified text.
 
-Retrieval quality depends on several factors, including the quality of the knowledge base, the effectiveness of the retrieval model, and the relevance ranking algorithms. Ensuring comprehensive coverage of the target domain while maintaining high-quality, up-to-date information requires significant ongoing effort and resources.
+Contains: Directory paths that contain the specified text.
 
-Another challenge is the integration between retrieval and generation components. The retrieved information must be effectively incorporated into the generation process without disrupting the fluency and coherence of the response. This requires careful tuning of the generation model and potentially specialized training approaches.
+Ends With: Directory paths that end with the specified text.
 
-Context length limitations remain a challenge, particularly when dealing with long documents or multiple retrieved passages. While RAG can help address this by retrieving relevant portions of documents, there are still practical limits on how much retrieved information can be effectively incorporated into a single response.
+Equals: Directory paths that are equal to the specified text.
 
-Privacy and security concerns also arise when RAG systems access external knowledge sources. Organizations must ensure that sensitive information is properly protected and that access controls are implemented to prevent unauthorized retrieval of confidential data.
+    Best practices for the Directory path filter: 
 
-Evaluation and Metrics
+This filter is designed to find files across the query shares which all contain a specified string within their directory paths. To find files with a specific directory or set of directories, use the Directory Explorer within the Data Store filter instead. 
 
-Evaluating RAG systems requires a comprehensive approach that considers both retrieval and generation quality. Traditional metrics for information retrieval, such as precision, recall, and mean reciprocal rank, are important for assessing the quality of the retrieval component.
+In cases where either filter is feasible, this filter is recommended over the Directory Path filter due to search performance and ease of use
 
-For the generation component, metrics such as BLEU, ROUGE, and BERTScore can be used to evaluate fluency and coherence. However, these metrics may not fully capture the factual accuracy and relevance of RAG-generated responses.
+Example uses:
 
-Human evaluation remains crucial for assessing the overall quality of RAG systems. This typically involves human annotators evaluating responses for accuracy, relevance, fluency, and helpfulness. Human evaluation can identify issues that automated metrics may miss, such as subtle factual errors or inappropriate tone.
+Use Ends With: Archive to find all files whose immediate parent directory ends with 'Archive', including 'MyArchive' but not 'ArchiveNow'
 
-Recent research has also introduced specialized metrics for RAG evaluation, such as faithfulness (measuring how well the response reflects the retrieved information) and answerability (measuring whether the retrieved information is sufficient to answer the query).
+Use Contains: Archive to find all files whose directory path includes 'Archive', including 'RandomPath/MyArchiveFolder' and 'RandomPath/MyArchiveFolder/MoreFolders'
 
-Future Directions and Research Opportunities
+If you want to find all files residing within a directory as well as in its subdirectories, it is generally recommended to use the 'Data store' filter instead. The exception is if you intend to target the same directory structure across multiple shares.
 
-The field of RAG continues to evolve rapidly, with several promising research directions emerging. One area of active research is improving retrieval quality through more sophisticated retrieval models and ranking algorithms. This includes exploring multi-modal retrieval, which can incorporate images, audio, and other media types alongside text.
+To achieve this with the Directory Path filter, add a forward slash (“/”) after the directory name in the specified path. For example, if folder1 is at the root of the share and folder12 is inside of it, you can use Starts with: folder1/folder12/ to find all files in folder12 and its subdirectories,
 
-Another promising direction is the development of more efficient RAG architectures that can handle larger knowledge bases and provide faster response times. This includes research into approximate retrieval methods, caching strategies, and distributed retrieval systems.
+As of Komprise version 4.8.3, "\" is automatically converted to "/" for flexibility between SMB and NFS paths.
 
-Personalization and adaptation represent another important research area. Future RAG systems may be able to learn user preferences and adapt their retrieval and generation strategies accordingly. This could enable more personalized and contextually appropriate responses.
+To find all files in a specific directory but NOT its sub-directories, do not add a forward slash. For example, Equals: folder1/folder12 will find files in folder12 (if folder1 is at the root of the share) but it will not find files in folder1/folder12/folder123.
 
-Integration with other AI technologies, such as reasoning systems and knowledge graphs, could further enhance RAG capabilities. This could enable more sophisticated reasoning about retrieved information and better integration of structured and unstructured knowledge.
+File Name:
 
-Ethical considerations and responsible AI development will also be crucial for the future of RAG. This includes addressing issues of bias in retrieval and generation, ensuring transparency in information sources, and developing methods for detecting and mitigating misinformation.
+Use to select the required files using the following filters: Starts With, Contains, Ends With, and Equals.
 
-Conclusion
+Last Modified Date: To filter files based on the last modification time, use any of the following options:
 
-Retrieval-Augmented Generation represents a significant advancement in artificial intelligence, offering a practical solution to many of the limitations of traditional language models. By combining the power of large language models with external knowledge retrieval, RAG systems can provide more accurate, factual, and contextually relevant responses.
+More than: To select files that are more than specified days, months, or years old.
 
-The widespread adoption of RAG across various domains demonstrates its practical value and potential for impact. However, realizing the full potential of RAG requires addressing technical challenges, developing appropriate evaluation methods, and ensuring responsible deployment.
+Before Date: Enter the date in mm/dd/yyyy format to select files modified before the specified date.
 
-As the field continues to evolve, RAG systems are likely to become increasingly sophisticated and capable. Future developments in retrieval quality, generation integration, and system efficiency will enable new applications and use cases that are currently beyond reach.
+After Date: Enter the date in mm/dd/yyyy format to select files modified after the specified date.
 
-The success of RAG also highlights the importance of hybrid approaches in artificial intelligence, where combining multiple techniques can achieve better results than any single approach alone. This lesson is likely to influence the development of other AI systems and applications in the years to come.
+Last Accessed Date: To filter files based on the time it was last accessed, use any of the following options:
 
-Ultimately, RAG represents not just a technical innovation but a fundamental shift in how we think about AI systems and their relationship with knowledge. By enabling AI to access and utilize external information effectively, RAG opens new possibilities for creating more intelligent, useful, and trustworthy AI applications that can better serve human needs and goals. 
+More than: To select files that are more than specified days, months, or years old.
+
+Before Date: Enter the date in mm/dd/yyyy format to select files modified before the specified date.
+
+After Date: Enter the date in mm/dd/yyyy format to select files modified after the specified date.
+
+Click Add.
+
+Moved Date: To select files based on the time it was moved, use any of the following options: 
+
+More than To select files that are more than specified days, months, or years old.
+
+Before Date: Enter the date in mm/dd/yyyy format to select files modified before the specified date.
+
+Between: Select files moved between the specified from and to dates.
+
+After Date: Enter the date in mm/dd/yyyy format to select files modified after the specified date
+
+File Type: Select files based on the type. The system lists different types of files present in the shares. For example, audio, binary, log, image, video, and so on.
+
+File Extension: To select files based on the specified file extension. Select the Include Files with no Extension checkbox to select files that do not have any extension.
+
+File Size: To select files based on size, use any of the following options.
+
+Less than: Selects files that are less than the specified size.
+
+Less than or equal to: Selects files that are less than or equal to the specified size.
+
+Equals: Select files that are equal to the specified size.
+
+Between: Select files based on the specified size range.
+
+Greater than or equal to: Selects files that are greater than or equal to the specified size.
+
+Greater than: Selects files that are greater than the specified size.
+
+Group: Select files belonging to the specified group, based on the GID for NFS or the primary group for SMB. You can use any of the following options. 
+
+Starts With: Select files that start with the specified group name.
+
+Contains: Select files that contain the specified group name.
+
+Ends With: Select files that end with the specified group name.
+
+Equals: Select files that are equal to the specified group name.
+
+Owner: Select files belonging to the specified owner, based on UID:
+
+To select a file created by a specific owner:
+
+Starts With: Select files that start with the specified owner name. 
+
+Contains: Select files that contain the specified owner’s name.
+
+Ends With: Select files that end with the specified owner’s name.
+
+Equals: Select files that are equal to the specified owner’s name.
+
+To select files created by an Undefined Owner select the Undefined Owner field. An example of an undefined owner could be an ex-employee who has left the organization. You can use this filter to analyze the number of files existing in your primary storage that is created by an unidentified owner
+
+Komprise tag: Select files that have already been tagged in Komprise with the specified tag(s).
