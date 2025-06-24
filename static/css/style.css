@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Safari Guide Chatbot</title>
+    <title>Query Assistant</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Martel:wght@400;600;700&family=Ubuntu:wght@300;400;500&display=swap');
@@ -39,7 +39,10 @@
 
         /* Header */
         .header {
-            background: linear-gradient(135deg, #8B4513, #A0522D);
+            background: linear-gradient(135deg, rgba(139,69,19,0.9), rgba(160,82,45,0.9)), url('https://t4.ftcdn.net/jpg/01/32/16/91/360_F_132169192_hlO3x0SGk7irwXHJ2UUZU93I3PPHVte2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: #F5DEB3;
             padding: 20px;
             text-align: center;
@@ -342,15 +345,15 @@
 </head>
 <body>
     <div class="header">
-        <h1><i class="fas fa-paw"></i> Safari Guide Bot</h1>
-        <p>Your AI companion for exploring the African wilderness</p>
+        <h1><i class="fas fa-search"></i> Query Assistant</h1>
+        <p>Your AI companion for answering questions and finding information</p>
     </div>
 
     <div class="chat-container">
         <div class="chat-messages" id="chat-messages">
             <div class="welcome-message">
-                <i class="fas fa-compass"></i>
-                <p>Welcome to your Safari adventure! Ask me anything about the African wilderness, wildlife, or your journey ahead.</p>
+                <i class="fas fa-question-circle"></i>
+                <p>Welcome to your Query Assistant! Ask me any questions and I'll help you find the answers you're looking for.</p>
             </div>
         </div>
         
@@ -364,13 +367,13 @@
                     <span></span>
                     <span></span>
                 </div>
-                Exploring the savanna for answers...
+                Searching for answers...
             </div>
         </div>
 
         <div class="input-area">
             <div class="input-container">
-                <input type="text" id="user-input" placeholder="Ask about wildlife, safari tips, or anything about Africa..." onkeypress="handleKeyPress(event)">
+                <input type="text" id="user-input" placeholder="Ask any question and I'll search for answers..." onkeypress="handleKeyPress(event)">
                 <button id="send-btn" onclick="sendMessage()">
                     <i class="fas fa-paper-plane"></i> Send
                 </button>
@@ -415,7 +418,7 @@
             })
             .catch(error => {
                 hideLoading();
-                addMessage('Sorry, I encountered an error while exploring. Please try again!', 'bot');
+                addMessage('Sorry, I encountered an error while searching. Please try again!', 'bot');
                 console.error('Error:', error);
             });
         }
